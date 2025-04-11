@@ -13,21 +13,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-
       - name: Install Firebase Tools
         run: |
           curl -sL https://firebase.tools | bash
 
-
       - name: Authenticate with Firebase
         run: |
-          echo "$FIREBASE_TOKEN" | firebase login --token
-
+          firebase login --token ${{ secrets.FIREBASE_TOKEN }}
 
       - name: Build the app
         run: |
-          ./gradlew assembleRelease  # Собираем релизную версию APK
-
+          ./gradlew assembleRelease  
 
       - name: Upload to Firebase App Distribution
         run: |
