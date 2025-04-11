@@ -1,0 +1,39 @@
+name: Firebase App Distribution Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: |
+          npm install
+
+      - name: Install Firebase Tools
+        run: |
+          npm install -g firebase-tools
+
+      - name: Authenticate with Firebase
+        run: |
+          firebase login:ci --token ${{ secrets.FIREBASE_TOKEN }}
+
+      - name: Build the app
+        run: |
+          ./gradlew assembleRelease  
+
+      - name: Upload to Firebase App Distribution
+        run: |
+          firebase appdistribution:distribute composeApp/build/outputs/apk/release/app-release.apk --app 1:516836427802:android:41b706ecefc2208bc329a3 --groups "Testers"
