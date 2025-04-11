@@ -19,11 +19,11 @@ jobs:
 
       - name: Authenticate with Firebase
         run: |
-          firebase login --token ${{ secrets.FIREBASE_TOKEN }}
+          firebase use --token ${{ secrets.FIREBASE_TOKEN }}  # Используем токен для аутентификации
 
       - name: Build the app
         run: |
-          ./gradlew assembleRelease  
+          ./gradlew assembleRelease  # Собираем релизную версию APK
 
       - name: Upload to Firebase App Distribution
         run: |
