@@ -78,9 +78,9 @@ android {
     signingConfigs {
         create("release") {
             storeFile = rootProject.file("myapp.keystore")
-            storePassword = "temporary_password"
-            keyAlias = "temporary_alias"
-            keyPassword = "temporary_key_password"
+            storePassword = System.getenv("KEYSTORE_PASSWORD")
+            keyAlias = System.getenv("KEY_ALIAS")
+            keyPassword = System.getenv("KEY_PASSWORD")
         }
     }
 
