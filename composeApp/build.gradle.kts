@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.composeCompiler)
 
     id("com.google.gms.google-services")
+    id("com.google.firebase.appdistribution")
 }
 
 kotlin {
@@ -15,7 +16,7 @@ kotlin {
             jvmTarget.set(JvmTarget.JVM_11)
         }
     }
-    
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -26,9 +27,8 @@ kotlin {
             isStatic = true
         }
     }
-    
+
     sourceSets {
-        
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
@@ -73,6 +73,29 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    signingConfigs {
+        create("release") {
+            storeFile = file("myapp.keystore")
+            storePassword = "temporary_password"
+            keyAlias = "temporary_alias"
+            keyPassword = "temporary_key_password"
+        }
+    }
+
+    buildTypes {
+        getByName("release") {
+            signingConfig = signingConfigs.getByName("release")
+            firebaseAppDistribution {
+                artifactType = "APK"
+                releaseNotes = "Automated release from GitHub Actions"
+
+                // mail testers
+                testers = "vasiliy.wk@gmail.com, kit1datasvit@gmail.com"
+                serviceCredentialsFile = "service-account-key.json"
+            }
+        }
     }
 }
 
