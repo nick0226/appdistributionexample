@@ -56,8 +56,8 @@ android {
         applicationId = "com.appdistributionexample"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 2
-        versionName = "1.1"
+        versionCode = 3
+        versionName = "1.2"
     }
     packaging {
         resources {
@@ -89,7 +89,7 @@ android {
             signingConfig = signingConfigs.getByName("release")
             firebaseAppDistribution {
                 artifactType = "APK"
-                releaseNotes = "Добавлены новые элементы в список"
+                releaseNotes = "- delete json in git repos"
 
                 // mail testers
                 testers = "vasiliy.wk@gmail.com, kit1datasvit@gmail.com"
