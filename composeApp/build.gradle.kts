@@ -77,7 +77,7 @@ android {
 
     signingConfigs {
         create("release") {
-            storeFile = file("myapp.keystore")
+            storeFile = rootProject.file("myapp.keystore")
             storePassword = "temporary_password"
             keyAlias = "temporary_alias"
             keyPassword = "temporary_key_password"
