@@ -59,8 +59,8 @@ android {
         applicationId = "com.appdistributionexample"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 10
-        versionName = "2.2"
+        versionCode = 11
+        versionName = "2.3"
     }
     packaging {
         resources {
@@ -92,7 +92,7 @@ android {
             signingConfig = signingConfigs.getByName("release")
             firebaseAppDistribution {
                 artifactType = "APK"
-                releaseNotes = "- release 2.2 add class checkUpdate app"
+                releaseNotes = "- release 2.3, add class checkUpdate app"
 
                 // mail testers
                 testers = "vasiliy.wk@gmail.com, kit1datasvit@gmail.com"
