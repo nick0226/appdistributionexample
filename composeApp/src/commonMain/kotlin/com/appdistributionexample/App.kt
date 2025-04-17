@@ -23,7 +23,7 @@ fun App() {
         val greeting = remember { Greeting().greet() }
         val list = listOf(
             "Item 1",
-            /*"Item 2",
+            "Item 2",
             "Item 3",
             "Item 4",
             "Item 5",
@@ -33,7 +33,7 @@ fun App() {
             "Item 9",
             "Item 10",
             "Item 11",
-            "Item 12",*/
+            "Item 12"
         )
 
         Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {

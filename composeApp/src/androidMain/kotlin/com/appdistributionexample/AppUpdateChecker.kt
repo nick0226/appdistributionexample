@@ -12,21 +12,16 @@ class AppUpdateChecker(private val context: Context) {
 
     suspend fun checkForUpdates() {
         try {
-            // Проверяем, вошел ли тестер в систему
             if (!firebaseAppDistribution.isTesterSignedIn) {
-                // Если тестер не вошел в систему, попробуем войти
                 firebaseAppDistribution.signInTester().await()
             }
 
-            // Проверяем наличие обновления
             val releaseInfo = firebaseAppDistribution.checkForNewRelease().await()
 
             if (releaseInfo != null) {
-                // Если есть информация о релизе, значит есть обновление
                 showUpdateNotification()
             }
         } catch (e: Exception) {
-            // Обработка ошибок (например, нет интернета)
             e.printStackTrace()
             android.widget.Toast.makeText(
                 context,
@@ -44,6 +39,5 @@ class AppUpdateChecker(private val context: Context) {
             .setCancelable(false)
             .show()
     }
-
 
 }
