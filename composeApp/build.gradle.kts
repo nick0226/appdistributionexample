@@ -34,6 +34,9 @@ kotlin {
             implementation(libs.androidx.activity.compose)
             implementation(project.dependencies.platform("com.google.firebase:firebase-bom:33.12.0"))
             implementation("com.google.firebase:firebase-analytics")
+
+            implementation("com.google.firebase:firebase-appdistribution-api-ktx:16.0.0-beta10")
+            implementation("com.google.firebase:firebase-appdistribution:16.0.0-beta10")
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -56,8 +59,8 @@ android {
         applicationId = "com.appdistributionexample"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 8
-        versionName = "1.8"
+        versionCode = 9
+        versionName = "2.1"
     }
     packaging {
         resources {
