@@ -2,6 +2,7 @@ package com.appdistributionexample
 
 import android.app.AlertDialog
 import android.content.Context
+import com.google.firebase.appdistribution.AppDistributionRelease
 import com.google.firebase.appdistribution.FirebaseAppDistribution
 import com.google.firebase.appdistribution.ktx.appDistribution
 import com.google.firebase.ktx.Firebase
@@ -24,7 +25,7 @@ class AppUpdateChecker(private val context: Context) {
 
             scope.launch {
                 if (releaseInfo != null) {
-                    showUpdateDialog()
+                    showUpdateDialog(releaseInfo)
                 }
             }
         } catch (e: Exception) {
@@ -34,10 +35,11 @@ class AppUpdateChecker(private val context: Context) {
         }
     }
 
-    private fun showUpdateDialog() {
+    private fun showUpdateDialog(displayReleaseInfo: AppDistributionRelease) {
+
         AlertDialog.Builder(context)
             .setTitle("Доступно обновление")
-            .setMessage("Доступна новая версия приложения")
+            .setMessage("Доступна новая версия приложения\n${displayReleaseInfo.displayVersion} ${displayReleaseInfo.versionCode}\n${displayReleaseInfo.releaseNotes}")
             .setNegativeButton("Закрыть", null)
             .setCancelable(false)
             .show()
