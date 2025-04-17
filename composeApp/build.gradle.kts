@@ -34,7 +34,6 @@ kotlin {
             implementation(libs.androidx.activity.compose)
             implementation(project.dependencies.platform("com.google.firebase:firebase-bom:33.12.0"))
             implementation("com.google.firebase:firebase-analytics")
-            implementation("com.google.firebase:firebase-appdistribution:16.0.0")
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -101,7 +100,6 @@ android {
 }
 
 dependencies {
-    implementation(libs.firebase.appdistribution.api.ktx)
     debugImplementation(compose.uiTooling)
 }
 
